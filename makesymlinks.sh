@@ -27,6 +27,9 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done 
 
+######### install plugins on the command line ########
+vim -es -u vimrc -i NONE -c "PlugInstall" -c "qa"
+
 ################
 rm ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets
 ln -s ~/dotfiles/tex.snippets ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets
