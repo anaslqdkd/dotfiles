@@ -30,4 +30,4 @@ done
 
 cd $dir 
 cp tex.snippets ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets
-ln -s $dir/tex.snippets ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets
+ln -s tex.snippets ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets
