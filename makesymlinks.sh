@@ -5,9 +5,9 @@
 
 ######### Variables
 
-dir = ~/dotfiles
-olddir = ~/dotfiles_old
-files = "vimrc vim Xresources "
+dir=~/dotfiles
+olddir=~/dotfiles_old
+files="vimrc vim Xresources "
 
 #########
 
@@ -27,3 +27,7 @@ for file in $files; do
     echo "Creating symlink to $file in the home directory"
     ln -s $dir/$file ~/.$file
 done 
+
+cd $dir 
+cp tex.snippets ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets
+ln -s $dir/tex.snippets ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets
