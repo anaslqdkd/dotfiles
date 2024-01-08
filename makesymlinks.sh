@@ -6,14 +6,13 @@
 ######### Variables
 
 dir=~/dotfiles
-olddir=~/dotfiles_old
-files="vimrc vim Xresources "
+files="vimrc Xresources "
 
 #########
 
 # create dorfiles_old in homedir
 echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
-mkdir -p $oldir
+mkdir -p ~/dotfiles_old 
 echo "done"
 
 # change to the dotfiles directory
@@ -28,6 +27,6 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done 
 
-cd $dir 
-cp tex.snippets ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets
-ln -s tex.snippets ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets
+################
+rm ~./vim/plugged/vim-snippets/UltiSnips/tex.snippets
+ln -s ~/dotfiles/tex.snippets ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets
