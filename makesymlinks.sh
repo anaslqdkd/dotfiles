@@ -28,5 +28,5 @@ for file in $files; do
 done 
 
 ################
-rm ~./vim/plugged/vim-snippets/UltiSnips/tex.snippets
+rm ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets
 ln -s ~/dotfiles/tex.snippets ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets
