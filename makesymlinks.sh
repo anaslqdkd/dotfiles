@@ -37,12 +37,28 @@ ln -s ~/dotfiles/tex.snippets ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets
 echo "compiling .Xresources"
 xrdb ~/.Xresources
 
+echo "adding i3 config if i3 is installed"
 FILE=~/.config/i3/config
-if [pacman -Qi i3-wm > /dev/null] || [dpkg -s i3 > /dev/null] ; then
+if pacman -Qi i3-wm > /dev/null; then 
     if test -f "$FILE"; then
         rm ~/.config/i3/config 
+        echo "creating the symbolic link to ~/.config/i3/config"
         ln -s ~/dotfiles/config ~/.config/i3/config
     else
+        mkdir ~/.config/i3
         ln -s ~/dotfiles/config ~/.config/i3/config
     fi 
+elif dpkg -s i3 > /dev/null; then
+    if test -f "$FILE"; then
+        rm ~/.config/i3/config 
+        echo "creating the symbolic link to ~/.config/i3/config"
+        ln -s ~/dotfiles/config ~/.config/i3/config
+    else
+        mkdir ~/.config/i3
+        ln -s ~/dotfiles/config ~/.config/i3/config
+    fi
+else 
+    echo "i3wm not found"
 fi
+
+
