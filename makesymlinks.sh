@@ -6,7 +6,7 @@
 ######### Variables
 
 dir=~/dotfiles
-files="vimrc Xresources "
+files="vimrc Xresources bashrc"
 
 #########
 
