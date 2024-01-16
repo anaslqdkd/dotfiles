@@ -1,4 +1,4 @@
-" vim plug automatic installation
+" automatic installation vim-plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -47,7 +47,9 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='bubblegum'
 Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-surround'
 ""Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'tpope/vim-fugitive'
 
 
 Plug 'deoplete-plugins/deoplete-go'
@@ -61,13 +63,19 @@ call deoplete#custom#var('omni', 'input_patterns', {
     \})
 
 inoremap " ""<left>
-inoremap ' ''<left>
+" inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
 inoremap < <><left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+autocmd FileType html inoremap ' ''<left>
+autocmd FileType python inoremap ' ''<left>
+autocmd FileType txt inoremap ' ''<left>
+autocmd FileType c inoremap ' ''<left>
+
+
 
 
 let mapleader=","
@@ -106,13 +114,21 @@ set clipboard=unnamed
 set encoding=utf-8
 set foldmethod=indent
 set foldlevel=99
+" set noesckeys
 syntax on
 filetype on
 
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+autocmd InsertEnter * set cursorline
+autocmd InsertLeave * set nocursorline
+
+"""""""""" curseur qui change en insert mode 
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
 
 colorscheme catppuccin-mocha
-
+" set ColorHighlight
 iab xdate <C-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+

@@ -54,7 +54,7 @@ snippet != "Not Equal" w
 \neq 
 endsnippet
 
-snippet <= "leq" w
+snippet <= "leq" wa
 \leq 
 endsnippet
 
@@ -95,6 +95,10 @@ endsnippet
 
 snippet bf "bold" wa
 \textbf{$1${VISUAL}} $0 
+endsnippet
+
+snippet rm "remove text" wa
+\ \textrm{$1${VISUAL}} \ $0 
 endsnippet
 
 snippet it "item" wa
@@ -155,12 +159,12 @@ snippet dm "Display Math" w
 	\]$0
 endsnippet
 
-snippet dd "equation" wa
+snippet dd "equation" iA
 $ $1  $ $0
 endsnippet
 
 snippet iff "iff" w
-\iff
+\Leftrightarrow
 endsnippet
 
 
@@ -196,14 +200,14 @@ snippet note "new doc" wa
 
 \pagestyle{fancy}
 \begin{document}
-\fancyhead[L]{$2}
-\fancyhead[C]{\textbf{$3}}
-\fancyhead[R]{$4}
 
 
 \maketitle
 \tableofcontents
 \newpage
+\fancyhead[L]{$2}
+\fancyhead[C]{\textbf{$3}}
+\fancyhead[R]{$4}
 
 $0
 \end{document}
@@ -323,9 +327,9 @@ snippet proof "proof" bi
 endsnippet
 
 snippet example "Example" bi
-\begin{exemple}[$1]
+\begin{example}[$1]
 	${0:${VISUAL}}
-\end{exemple}
+\end{example}
 endsnippet
 
 snippet prop "Proposition" bi
@@ -340,6 +344,34 @@ endsnippet
 
 snippet lrb "left\{ right\}" i
 \left\\{ ${1:${VISUAL}} \right\\} $0
+endsnippet
+
+snippet lrp "left\( right\)" i
+\left\\{ ${1:${VISUAL}} \right\\} $0
+endsnippet
+
+snippet EE "\{ \}" Ai 
+\\{$1\\}$0
+endsnippet
+
+snippet aaa "\alpha" Ai
+\alpha
+endsnippet
+
+snippet bbb "\beta" Ai
+\beta
+endsnippet
+
+snippet ggg "\gamma" Ai
+\gamma
+endsnippet
+
+snippet ddd "\delta" Ai
+\delta
+endsnippet
+
+snippet mcal "mathcal" i
+\mathcal{$1}$0
 endsnippet
 
 ##############################################
