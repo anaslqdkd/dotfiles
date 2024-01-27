@@ -50,7 +50,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-surround'
 ""Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-fugitive'
-
+Plug 'ap/vim-css-color'
 
 Plug 'deoplete-plugins/deoplete-go'
 let g:deoplete#enable_at_startup = 1
@@ -67,13 +67,15 @@ inoremap " ""<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
-inoremap < <><left>
+" inoremap < <><left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 autocmd FileType html inoremap ' ''<left>
 autocmd FileType python inoremap ' ''<left>
 autocmd FileType txt inoremap ' ''<left>
 autocmd FileType c inoremap ' ''<left>
+autocmd FileType c,cpp imap {<CR> {<CR>}<Esc>O
+autocmd FileType c,cpp imap <<CR> <><left>
 
 
 
@@ -88,6 +90,8 @@ nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <silent> <leader>r :w !python3 %<CR>
 nnoremap <leader>s :call UltiSnips#RefreshSnippets()<CR>
+nnoremap <c-h> :tabprevious<CR>
+nnoremap <c-l> :tabprevious<CR>
 
 
 vnoremap $1 <esc>`>a)<esc>`<i(<esc>
