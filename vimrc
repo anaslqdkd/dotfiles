@@ -51,6 +51,7 @@ Plug 'tpope/vim-surround'
 ""Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'tpope/vim-fugitive'
 Plug 'ap/vim-css-color'
+Plug 'vim-scripts/DrawIt'
 
 Plug 'deoplete-plugins/deoplete-go'
 let g:deoplete#enable_at_startup = 1
@@ -135,4 +136,4 @@ let &t_EI = "\e[2 q"
 colorscheme catppuccin-mocha
 " set ColorHighlight
 iab xdate <C-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-
+set background=dark

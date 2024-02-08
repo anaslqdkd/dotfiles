@@ -184,3 +184,6 @@ done
 cd $P
 export MPWD=$P
 }
+# set -o vi
+eval "$(thefuck --alias fuck)"
+
