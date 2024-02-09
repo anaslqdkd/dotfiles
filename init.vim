@@ -171,10 +171,13 @@ let &t_EI = "\e[2 q"
 " set ColorHighlight
 " iab xdate <C-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 set background=dark
-set t_Co=256
+" set t_Co=256
+" set termguicolors
 
 
 colorscheme tokyonight-night 
+set termguicolors
+set t_Co=256
 "copy filepath
 nnoremap yf :let @+=expand('%:p')<CR>
 nnoremap <leader>e o<Esc>
