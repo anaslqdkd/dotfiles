@@ -54,7 +54,7 @@ set $down j
 set $left h
 set $right l 
 set $Mod Mod1
-set $term urxvt -fn 'xft: monospace:pixelsize=16":Style=Regular' 
+set $term alacritty 
 # use Mouse+$Mod to drag floating windows to their wanted position
 floating_modifier $Mod
 
@@ -62,12 +62,11 @@ floating_modifier $Mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
-bindsym $Mod+Return exec urxvt -fn 'xft: monospace:pixelsize=16":Style=Regular' -e tmux
+bindsym $Mod+Return exec $term 
 bindsym $Mod+u exec firefox 
-bindsym $Mod+m exec urxvt -fn 'xft: monospace:pixelsize=16:Style=Regular' -e ranger 
+bindsym $Mod+m exec $term -e ranger 
 bindsym $Mod+y exec discord
 bindsym $Mod+z exec shutter
-bindsym $Mod+n exec urxvt -fn 'xft: bitstream vera sans mono:pixelsize=16:Style=Regular' -e vim
 
 # kill focused window
 bindsym $Mod+i kill
@@ -222,12 +221,12 @@ bar {
     position top 
     font pango: Monospace 9 
     colors {
-		background $bar-color
-	    	separator $bar-color 
-        statusline #ADE8F4
+		background $idk-color
+	    	separator $idk-color 
+        statusline #FFFFFF
 		#                  border             background         text
-		focused_workspace  $bar-color          $bg-color           $inactive-text-color 
-		inactive_workspace $bar-color          $bar-color          $inactive-text-color 
+		focused_workspace  $idk-color          $idk-color           $inactive-text-color 
+		inactive_workspace $idk-color          $idk-color          $inactive-text-color 
 		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $inactive-text-color
 	}
 
@@ -249,15 +248,16 @@ exec --no-startup-id nitrogen --restore
 set $bg-color 	         #000000
 set $inactive-bg-color   #93EA95
 set $text-color          #c0c6ce
-set $inactive-text-color #ADE8F4
+set $inactive-text-color #FFFFFF
 set $urgent-bg-color     #E53935
 set $indicator-color     #000000
 set $status-text         #ADE8F4
 set $bar-color           #000000
 set $inactive-tab        #F1BDD7
+set $idk-color           #7F3667
 # window colors
 #                       border              background         text                 indicator
-client.focused          $inactive-tab $bg-color          $inactive-bg-color
+client.focused          $inactive-tab $bg-color        $inactive-text-color 
 client.unfocused        $bg-color  $bg-color        $status-text
 client.focused_inactive $bg-color   $inactive-text-color $indicator-color
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $indicator-color
@@ -273,10 +273,10 @@ bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+Shift+z exec --no-startup-id morc_menu
 bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
-bindsym $mod+BackSpace exec urxvt -fn 'xft: monospace:pixelsize=13":Style=Regular' -T "vim-float" -e sh -c "vim -c 'cd ~/poubelle_perso'" 
-bindsym $mod+p exec $term -T "urxvt-float" 
+bindsym $mod+BackSpace exec urxvt -fn 'xft: monospace:pixelsize=13":Style=Regular' -T "vim-float" -e sh -c "nvim -c 'cd ~/poubelle_perso'" 
+bindsym $mod+p exec $term -T "term-float" 
 for_window[title="vim-float"] floating enable border normal 
-for_window[title="urxvt-float"] floating enable border normal 
+for_window[title="term-float"] floating enable border normal 
 
 default_border pixel 1
 default_floating_border normal
@@ -343,8 +343,8 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id clipit
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-gaps inner 9 
-gaps outer -2
+# gaps inner 9 
+# gaps outer -2
 bindsym $mod+Ctrl+g gaps inner current set 0; gaps outer current set 0 
 bindsym $mod+Shift+g gaps inner current set 9; gaps outer current set -2
 smart_gaps on

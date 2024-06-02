@@ -186,4 +186,8 @@ export MPWD=$P
 }
 # set -o vi
 eval "$(thefuck --alias fuck)"
+alias :q="exit"
+alias vpn="(/opt/cisco/anyconnect/bin/vpnui &)"
 
+
+export PKG_CONFIG_PATH=/home/ash/Téléchargements/SDL2_ttf-2.22.0:$PKG_CONFIG_PATH
