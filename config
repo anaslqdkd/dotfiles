@@ -67,6 +67,7 @@ bindsym $Mod+u exec firefox
 bindsym $Mod+m exec $term -e ranger 
 bindsym $Mod+y exec discord
 bindsym $Mod+z exec shutter
+bindsym $mod+g move workspace to output right
 
 # kill focused window
 bindsym $Mod+i kill
