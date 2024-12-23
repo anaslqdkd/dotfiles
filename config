@@ -65,7 +65,7 @@ tiling_drag modifier titlebar
 bindsym $Mod+Return exec $term 
 bindsym $Mod+u exec firefox 
 bindsym $Mod+m exec $term -e ranger 
-bindsym $Mod+y exec discord
+bindsym $Mod+y exec vesktop
 bindsym $Mod+z exec shutter
 bindsym $mod+g move workspace to output right
 
@@ -255,7 +255,7 @@ set $indicator-color     #000000
 set $status-text         #ADE8F4
 set $bar-color           #000000
 set $inactive-tab        #F1BDD7
-set $idk-color           #7F3667
+set $idk-color           #e46876
 # window colors
 #                       border              background         text                 indicator
 client.focused          $inactive-tab $bg-color        $inactive-text-color 
@@ -318,6 +318,10 @@ for_window [class="KeePassXC"] floating enable sticky
 for_window [class="shutter"] floating enable sticky border normal
 for_window [class="mpv"] floating enable sticky resize set 600
 for_window [urgent=latest] focus
+for_window [class="bevyTest"] floating enable border pixel 1
+for_window [title="titre"] floating enable sticky border pixel 1
+# for_window [class="sun-awt-X11-XDialogPeer"] floating enable sticky border pixel 1
+# for_window [class="ij-ImageJ"] floating enable sticky 
 bindsym $mod+0 mode "$mode_system"
 # for_window [class="i3bar"] gaps inner 3
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown

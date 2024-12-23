@@ -191,5 +191,12 @@ alias vpn="(/opt/cisco/anyconnect/bin/vpnui &)"
 
 
 export PKG_CONFIG_PATH=/home/ash/Téléchargements/SDL2_ttf-2.22.0:$PKG_CONFIG_PATH
+export JAVAFX_HOME=/home/ash/javafx/javafx-sdk-23.0.1
+
+
 export PATH="$PATH:/home/ash/.dotnet/tools"
 . "$HOME/.cargo/env"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

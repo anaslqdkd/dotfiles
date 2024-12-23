@@ -1,10 +1,11 @@
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" }, -- Example for Lua
-		python = { "black" }, -- Example for Python
+		python = { "black", "autopep8", "pylint" }, -- Example for Python
 		c = { "clang-format" },
 		java = { "google-java-format" },
 		cs = { "clang-format" },
+		rust = { "rustfmt" },
 		-- Add other file types and their formatters here
 	},
 })

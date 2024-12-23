@@ -1,9 +1,10 @@
-vim.cmd [[
+vim.cmd([[
 call plug#begin()
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
 " or                                , { 'branch': '0.1.x' }
 Plug 'folke/tokyonight.nvim'
+Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'neovim/nvim-lspconfig'
@@ -22,6 +23,15 @@ Plug 'windwp/nvim-autopairs'
 Plug 'lervag/vimtex'
 Plug 'ggandor/leap.nvim'
 Plug 'stevearc/conform.nvim'
+Plug 'rebelot/kanagawa.nvim'
+Plug 'catppuccin/nvim'
+Plug 'mfussenegger/nvim-jdtls'
+Plug 'github/copilot.vim'
+Plug 'zbirenbaum/copilot.lua'
+Plug 'EdenEast/nightfox.nvim'
+Plug 'stevearc/aerial.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug '3rd/image.nvim'
+Plug 'sindrets/diffview.nvim'
 call plug#end()
-]]
-
+]])

@@ -23,9 +23,4 @@ vim.keymap.set("n", "<C-K>", "<C-W>k", opts)
 vim.keymap.set("n", "<C-L>", "<C-W>l", opts)
 vim.keymap.set("n", "<C-H>", "<C-W>h", opts)
 -- Key mapping for manual formatting
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>fs",
-	'<cmd>lua require("conform").format()<CR>',
-	{ noremap = true, silent = true }
-)
+vim.api.nvim_set_keymap("n", "<leader>f", '<cmd>lua require("conform").format()<CR>', { noremap = true, silent = true })
