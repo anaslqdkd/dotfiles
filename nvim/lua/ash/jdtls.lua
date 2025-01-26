@@ -4,11 +4,11 @@
 -- }
 -- require("jdtls").start_or_attach(config)
 --
-local javafx_path = "/home/ash/javafx/javafx-sdk-23.0.1/lib" -- Path to your JavaFX SDK lib folder
+local javafx_path = "/home/ash/.local/share/javafx/javafx-sdk-23.0.1/lib" -- Path to your JavaFX SDK lib folder
 
 local config = {
 	cmd = { "/home/ash/.local/share/nvim/mason/bin/jdtls" },
-	root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
+	root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", "mvnw" }, { upward = true })[1]),
 
 	-- Configure JavaFX modules and classpath for LSP
 	init_options = {

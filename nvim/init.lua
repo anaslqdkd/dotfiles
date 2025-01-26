@@ -15,6 +15,12 @@ require("ash.jdtls")
 require("ash.aerial")
 require("ash.ibl")
 require("ash.image")
+require("ash.todo-comments")
+require("ash.myplugin")
+require("ash.noice")
+require("ash.plantuml")
+require("ash.statusline")
+require("ash.gitsigns")
 -- For init.lua
 local nvim_lsp = require("lspconfig")
 
@@ -54,3 +60,19 @@ vim.diagnostic.config({
 -- 		end
 -- 	end,
 -- })
+--
+--
+
+lspconfig.gdscript.setup({})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "help",
+	callback = function()
+		-- Check if the window is already split horizontally, and if so, change it to a vertical split
+		if vim.fn.winnr("$") > 1 then
+			vim.cmd("wincmd H")
+		else
+			vim.cmd("vertical split")
+		end
+	end,
+})

@@ -65,6 +65,7 @@ cmp.setup({
 		{ name = "luasnip" },
 	}, {
 		{ name = "buffer" },
+		{ name = "render-markdown" },
 	}),
 })
 
@@ -86,14 +87,24 @@ require("lspconfig").rust_analyzer.setup({
 	},
 })
 
-lspconfig.pylsp.setup({
-	on_attach = custom_attach,
+lspconfig.pyright.setup({
+	-- on_attach = custom_attach,
+	on_attach = function(client, bufnr)
+		local workspace = vim.fn.getcwd()
+		-- print("Workspace: " .. workspace) -- Confirm the current directory
+	end,
 	settings = {
-		pylsp = {
+		python = {
+			analysis = {
+				extraPaths = { "./src", "./lib" }, -- Add directories containing your modules
+				useLibraryCodeForTypes = true, -- Ensure library code is used for type checking
+			},
+		},
+		pyright = {
 			plugins = {
 				-- formatter options
-				black = { enabled = true },
-				autopep8 = { enabled = false },
+				black = { enabled = false },
+				autopep8 = { enabled = true },
 				yapf = { enabled = false },
 				-- linter options
 				pylint = { enabled = true, executable = "pylint" },
@@ -121,19 +132,110 @@ lspconfig.java_language_server.setup({
 	autostart = false, -- Ensure it does not start automatically
 })
 
-lspconfig.jdtls.setup({
+-- lspconfig.jdtls.setup({
+-- 	cmd = {
+-- 		"/home/ash/.local/share/nvim/mason/bin/jdtls", -- Path to the jdtls executable
+-- 		"-configuration",
+-- 		"/home/ash/.cache/jdtls/config", -- Path to jdtls config
+-- 		"-data",
+-- 		"/home/ash/.cache/jdtls/workspace", -- Path to workspace
+-- 	},
+-- 	settings = {
+-- 		java = {
+-- 			-- saveActions = {
+-- 			-- 	organizeImports = false, -- Disable organizing imports on save
+-- 			-- },
+-- 			-- diagnostics = {
+-- 			-- 	unusedImports = "ignore", -- Ignore unused imports
+-- 			-- },
+-- 			-- Additional settings can be added here
+-- 		},
+-- 	},
+-- 	on_attach = function(client, bufnr)
+-- 		-- Additional customization for `jdtls` if necessary
+-- 	end,
+-- })
+
+-- lspconfig.lua_ls.setup({})
+
+require("lspconfig").lua_ls.setup({
 	settings = {
-		java = {
-			-- saveActions = {
-			-- 	organizeImports = false, -- Disable organizing imports on save
-			-- },
-			-- diagnostics = {
-			-- 	unusedImports = "ignore", -- Ignore unused imports
-			-- },
-			-- Additional settings can be added here
+		Lua = {
+			runtime = {
+				-- Use LuaJIT in Neovim
+				version = "LuaJIT",
+				path = vim.split(package.path, ";"),
+			},
+			diagnostics = {
+				-- Recognize `vim` global
+				globals = { "vim" },
+			},
+			workspace = {
+				-- Add Neovim runtime files as a library
+				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false, -- Optional: avoid prompts about 3rd-party libraries
+			},
+			telemetry = {
+				enable = false, -- Disable telemetry for privacy
+			},
+			completion = {
+				-- Ensure signature help is enabled for Lua
+				enable = true,
+			},
 		},
 	},
-	on_attach = function(client, bufnr)
-		-- Additional customization for `jdtls` if necessary
-	end,
 })
+
+require("lspconfig").lua_ls.setup({
+	on_init = function(client)
+		if client.workspace_folders then
+			local path = client.workspace_folders[1].name
+			if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+				return
+			end
+		end
+
+		client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+			runtime = {
+				-- Tell the language server which version of Lua you're using
+				-- (most likely LuaJIT in the case of Neovim)
+				version = "LuaJIT",
+			},
+			-- Make the server aware of Neovim runtime files
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					vim.env.VIMRUNTIME,
+					-- Depending on the usage, you might want to add additional paths here.
+					-- "${3rd}/luv/library"
+					-- "${3rd}/busted/library",
+				},
+				-- or pull in all of 'runtimepath'. NOTE: this is a lot slower and will cause issues when working on your own configuration (see https://github.com/neovim/nvim-lspconfig/issues/3189)
+				-- library = vim.api.nvim_get_runtime_file("", true)
+			},
+		})
+	end,
+	settings = {
+		Lua = {},
+	},
+})
+
+require("lspconfig").texlab.setup({})
+
+-- require("lspconfig").cssls.setup({
+-- 	cmd = { "~/.local/share/nvim/mason/bin/vscode-css-language-server", "--stdio" }, -- Ensure you include '--stdio'
+--
+-- 	on_attach = function(_, bufnr)
+-- 		local function buf_set_keymap(...)
+-- 			vim.api.nvim_buf_set_keymap(bufnr, ...)
+-- 		end
+-- 		local opts = { noremap = true, silent = true }
+-- 		buf_set_keymap("n", "<leader>f", ":lua vim.lsp.buf.format { async = true }<CR>", opts)
+-- 	end,
+--
+-- 	settings = {
+-- 		css = { validate = true },
+-- 		scss = { validate = true },
+-- 		less = { validate = true },
+-- 	},
+-- })

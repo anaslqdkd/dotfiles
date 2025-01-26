@@ -3,6 +3,7 @@ call plug#begin()
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.6' }
 " or                                , { 'branch': '0.1.x' }
+Plug 'folke/todo-comments.nvim'
 Plug 'folke/tokyonight.nvim'
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -26,12 +27,26 @@ Plug 'stevearc/conform.nvim'
 Plug 'rebelot/kanagawa.nvim'
 Plug 'catppuccin/nvim'
 Plug 'mfussenegger/nvim-jdtls'
-Plug 'github/copilot.vim'
-Plug 'zbirenbaum/copilot.lua'
+"Plug 'github/copilot.vim'
+"Plug 'zbirenbaum/copilot.lua'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'stevearc/aerial.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug '3rd/image.nvim'
 Plug 'sindrets/diffview.nvim'
+Plug 'MeanderingProgrammer/render-markdown.nvim'
+Plug 'folke/noice.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'rcarriga/nvim-notify'
+Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'tyru/open-browser.vim'
+Plug 'aklt/plantuml-syntax'
+
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'junegunn/fzf.vim'
+
+Plug '$HOME/example.nvim'
+Plug 'NeogitOrg/neogit'
+
 call plug#end()
 ]])
