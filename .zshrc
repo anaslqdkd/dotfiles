@@ -103,7 +103,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
+source <(fzf --zsh)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode fzf)
 source ~/.zsh//zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-vi-mode/zsh-vi-mode.zsh
@@ -116,7 +117,7 @@ source ~/.zsh/zsh-vi-mode/zsh-vi-mode.zsh
 compinit
 
 alias :q='exit'
-alias fn='nvim $(fzf --preview="bat --color=always --style=numbers {}" --bind "ctrl-n:down,ctrl-p:up")'
+alias f='nvim $(fzf --preview="bat --color=always --style=numbers {}" --bind "ctrl-n:down,ctrl-p:up")'
 alias d='cd "$(find . -type d | fzf  --bind "ctrl-n:down,ctrl-p:up" --color=bg+:#282c34,bg:#1c1f24,fg:#abb2bf,hl:#d19a66 )" '
 alias n='nvim .'
 

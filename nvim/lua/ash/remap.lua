@@ -39,7 +39,7 @@ end)
 -- Neogit
 
 -- Telescope
-vim.keymap.set("n", "<leader>f", ":Telescope<CR>", { desc = "Open Telescope" })
+vim.keymap.set("n", "<leader>t", ":Telescope<CR>", { desc = "Open Telescope" })
 
 -- Todo Commentary
 vim.keymap.set("n", "<leader>do", ":TodoTelescope<CR>", { desc = "Open Telescope To Do in all project" })
@@ -61,3 +61,14 @@ end, { desc = "Toggle virtual text in diagnostics" })
 vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
 
 -- vim.keymap.set("n", "<leader>tb", "Gitsigns toggle_current_line_blame<CR>")
+
+-- terminal
+vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
+
+-- nnoremap <leader>p :lua require("nabla").popup()<CR> " Customize with popup({border = ...})  : `single` (default), `double`, `rounded`
+-- vim.api.nvim_set_keymap(
+-- 	"v",
+-- 	"<leader>$",
+-- 	":lua require('nabla').popup({border = 'single'})<CR>",
+-- 	{ noremap = true, silent = true }
+-- )

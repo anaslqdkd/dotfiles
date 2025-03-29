@@ -27,6 +27,7 @@ function M.render()
 		command = { fg = "#80EF80", bg = "#000000" }, -- Orange text on white background
 		replace = { fg = "#FF4500", bg = "#000000" }, -- Red text on white background
 		unknown = { fg = "#FFFFFF", bg = "#000000" }, -- Dark gray text on white background
+		terminal = { fg = "#ff3c82", bg = "#000000" }, -- Dark gray text on white background
 	}
 	local colors = mode_colors[mode] or mode_colors.unknown
 	local text_highlight = "StatuslineText" -- Highlight group for the mode text

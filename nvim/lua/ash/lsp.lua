@@ -65,6 +65,7 @@ cmp.setup({
 		{ name = "luasnip" },
 	}, {
 		{ name = "buffer" },
+		{ name = "obsidian" },
 		{ name = "render-markdown" },
 	}),
 })
@@ -185,6 +186,8 @@ require("lspconfig").lua_ls.setup({
 		},
 	},
 })
+require("lspconfig").biome.setup({})
+require("lspconfig").eslint.setup({})
 
 require("lspconfig").lua_ls.setup({
 	on_init = function(client)

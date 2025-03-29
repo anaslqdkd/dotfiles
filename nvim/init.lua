@@ -11,16 +11,19 @@ require("ash.conform")
 require("ash.vimtex")
 require("lspconfig").csharp_ls.setup({})
 require("lspconfig").css_variables.setup({})
-require("ash.jdtls")
 require("ash.aerial")
 require("ash.ibl")
-require("ash.image")
+-- require("ash.image")
 require("ash.todo-comments")
 require("ash.myplugin")
-require("ash.noice")
+-- require("ash.noice")
 require("ash.plantuml")
-require("ash.statusline")
+-- require("ash.statusline")
 require("ash.gitsigns")
+require("ash.persistence")
+require("ash.obsidian")
+require("ash.markdown")
+require("ash.markdown-render")
 -- For init.lua
 local nvim_lsp = require("lspconfig")
 
@@ -70,9 +73,71 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		-- Check if the window is already split horizontally, and if so, change it to a vertical split
 		if vim.fn.winnr("$") > 1 then
-			vim.cmd("wincmd H")
+			vim.cmd("wincmd L")
 		else
 			vim.cmd("vertical split")
 		end
 	end,
+})
+
+-- Restore cursor to file position in previous editing session
+vim.api.nvim_create_autocmd("BufReadPost", {
+	callback = function(args)
+		local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+		local line_count = vim.api.nvim_buf_line_count(args.buf)
+		if mark[1] > 0 and mark[1] <= line_count then
+			vim.cmd('normal! g`"zz')
+		end
+	end,
+})
+
+-- Show cursorline only on active windows
+vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
+	callback = function()
+		if vim.w.auto_cursorline then
+			vim.wo.cursorline = true
+			vim.w.auto_cursorline = false
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
+	callback = function()
+		if vim.wo.cursorline then
+			vim.w.auto_cursorline = true
+			vim.wo.cursorline = false
+		end
+	end,
+})
+
+-- Auto resize splits when the terminal's window is resized
+vim.api.nvim_create_autocmd("VimResized", {
+	command = "wincmd =",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "typst",
+	callback = function()
+		vim.bo.commentstring = "// %s"
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = "*.typ",
+	callback = function()
+		local input_file = vim.fn.expand("%") -- Get the full path of the current file
+		local output_file = vim.fn.expand("%:p:h") .. "/pdfs/" .. vim.fn.expand("%:t:r") .. ".pdf" -- Construct the output file path in the pdfs directory
+
+		-- Ensure the pdfs directory exists
+		vim.fn.system("mkdir -p " .. vim.fn.expand("%:p:h") .. "/pdfs")
+
+		-- Compile the Typst file and output the PDF to the pdfs directory
+		vim.fn.system("typst compile " .. input_file .. " " .. output_file)
+	end,
+})
+
+vim.g.WMGraphviz_output = "svg"
+vim.api.nvim_create_autocmd("VimLeave", {
+	pattern = "*.tex",
+	command = "VimtexClean!",
 })

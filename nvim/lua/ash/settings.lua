@@ -1,4 +1,4 @@
-vim.cmd("colorscheme catppuccin-mocha")
+vim.cmd("colorscheme nightfox")
 vim.opt.guicursor = ""
 vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.opt.nu = true
@@ -33,3 +33,5 @@ vim.diagnostic.config({ signs = false })
 
 vim.opt.splitright = true
 vim.o.splitbelow = true
+vim.opt.autoread = true
+vim.opt.conceallevel = 1
