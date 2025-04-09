@@ -54,6 +54,8 @@ Plug 'folke/persistence.nvim'
 Plug 'jbyuki/nabla.nvim'
 Plug 'chomosuke/typst-preview.nvim', {'tag': 'v1.*'}
 Plug 'wannesm/wmgraphviz.vim'
+Plug 'kevinhwang91/promise-async'
+Plug 'kevinhwang91/nvim-ufo'
 
 
 call plug#end()

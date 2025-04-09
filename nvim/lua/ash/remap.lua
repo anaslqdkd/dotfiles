@@ -72,3 +72,6 @@ vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = 
 -- 	":lua require('nabla').popup({border = 'single'})<CR>",
 -- 	{ noremap = true, silent = true }
 -- )
+
+vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+vim.keymap.set("n", "zM", require("ufo").closeAllFolds)

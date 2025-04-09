@@ -24,6 +24,7 @@ require("ash.persistence")
 require("ash.obsidian")
 require("ash.markdown")
 require("ash.markdown-render")
+require("ash.ufo")
 -- For init.lua
 local nvim_lsp = require("lspconfig")
 
@@ -140,4 +141,15 @@ vim.g.WMGraphviz_output = "svg"
 vim.api.nvim_create_autocmd("VimLeave", {
 	pattern = "*.tex",
 	command = "VimtexClean!",
+})
+
+vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
+	pattern = { "*.*" },
+	desc = "save view (folds), when closing file",
+	command = "mkview",
+})
+vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+	pattern = { "*.*" },
+	desc = "load view (folds), when opening file",
+	command = "silent! loadview",
 })

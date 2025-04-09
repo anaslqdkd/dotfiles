@@ -35,3 +35,10 @@ vim.opt.splitright = true
 vim.o.splitbelow = true
 vim.opt.autoread = true
 vim.opt.conceallevel = 1
+
+vim.o.foldcolumn = "1"
+vim.o.foldlevel = 2000
+vim.o.foldlevelstart = 2000
+vim.o.foldenable = true
+
+vim.opt.viminfo = "'100,f1"
