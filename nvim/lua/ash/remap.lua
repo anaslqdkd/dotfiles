@@ -75,3 +75,5 @@ vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = 
 
 vim.keymap.set("n", "zR", require("ufo").openAllFolds)
 vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+vim.api.nvim_set_keymap("n", "<Leader>rn", "<Cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>gr", "<Cmd>Trouble lsp_references<CR>", { noremap = true, silent = true })

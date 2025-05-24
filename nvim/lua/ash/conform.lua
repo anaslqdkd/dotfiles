@@ -1,7 +1,7 @@
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" }, -- Example for Lua
-		python = { "autopep8" }, -- Example for Python
+		python = { "black" }, -- Example for Python
 		-- c = { "clang-format" },
 		-- java = { "google-java-format" },
 		cs = { "clang-format" },
@@ -9,13 +9,17 @@ require("conform").setup({
 		c = {
 			"clang-format",
 			args = {
-				"--style={IndentWidth: 4, ContinuationIndentWidth: 4}", -- Customize indentation
+				"--style=File", -- Use `.clang-format` file if present, otherwise fall back to defaults
+				"--indent-width=4", -- Explicitly set the indentation to 4 spaces
+				"--continuation-indent-width=4", -- Set continuation indent to 4 spaces
+				"IndentWidth: 4",
 			},
 		},
 		java = {
 			"google-java-format",
 			args = { "--aosp" }, -- Use Android Open Source style (4 spaces instead of 2)
 		},
+		javascript = { "prettier" },
 		-- Add other file types and their formatters here
 	},
 })

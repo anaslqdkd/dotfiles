@@ -38,7 +38,18 @@ vim.opt.conceallevel = 1
 
 vim.o.foldcolumn = "1"
 vim.o.foldlevel = 2000
-vim.o.foldlevelstart = 2000
+vim.o.foldlevelstart = 200000
 vim.o.foldenable = true
 
 vim.opt.viminfo = "'100,f1"
+
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.o.foldcolumn = "1"
+
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<Right>", 'copilot#Accept("<CR>")', {
+	expr = true,
+	silent = true,
+	noremap = true,
+	replace_keycodes = false,
+})

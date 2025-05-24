@@ -3,10 +3,11 @@ call plug#begin()
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 " or                                , { 'branch': '0.1.x' }
-Plug 'epwalsh/obsidian.nvim', {'tag': 'v3.9.0'}
+"Plug 'epwalsh/obsidian.nvim', {'tag': 'v3.9.0'}
 Plug 'folke/todo-comments.nvim'
 Plug 'folke/tokyonight.nvim'
 Plug 'nvim-treesitter/nvim-treesitter-context'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'neovim/nvim-lspconfig'
@@ -28,14 +29,14 @@ Plug 'stevearc/conform.nvim'
 Plug 'rebelot/kanagawa.nvim'
 Plug 'catppuccin/nvim'
 "Plug 'mfussenegger/nvim-jdtls'
-"Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 "Plug 'zbirenbaum/copilot.lua'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'stevearc/aerial.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug '3rd/image.nvim'
 Plug 'sindrets/diffview.nvim'
-Plug 'MeanderingProgrammer/render-markdown.nvim'
+"Plug 'MeanderingProgrammer/render-markdown.nvim'
 "Plug 'folke/noice.nvim'
 "Plug 'MunifTanjim/nui.nvim'
 "Plug 'rcarriga/nvim-notify'
@@ -49,13 +50,16 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' 
 
 "Plug '$HOME/example.nvim'
 Plug 'NeogitOrg/neogit'
-Plug 'AndrewRadev/typewriter.vim'
-Plug 'folke/persistence.nvim'
-Plug 'jbyuki/nabla.nvim'
 Plug 'chomosuke/typst-preview.nvim', {'tag': 'v1.*'}
 Plug 'wannesm/wmgraphviz.vim'
 Plug 'kevinhwang91/promise-async'
 Plug 'kevinhwang91/nvim-ufo'
+Plug 'Hoffs/omnisharp-extended-lsp.nvim'
+Plug 'folke/trouble.nvim'
+Plug 'mfussenegger/nvim-dap'
+Plug 'nvim-neotest/nvim-nio'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'CopilotC-Nvim/CopilotChat.nvim'
 
 
 call plug#end()

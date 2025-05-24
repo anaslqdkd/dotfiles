@@ -1,19 +1,19 @@
 local lsp_zero = require("lsp-zero")
 local lspconfig = require("lspconfig")
 
-lspconfig.csharp_ls.setup({})
+-- lspconfig.csharp_ls.setup({})
 -- require'lspconfig'.csharp_ls.setup{}
-lspconfig.csharp_ls.setup({
-	root_dir = lspconfig.util.root_pattern(".git", ".csproj", "packages.config"),
-})
+-- lspconfig.csharp_ls.setup({
+-- 	root_dir = lspconfig.util.root_pattern(".git", ".csproj", "packages.config"),
+-- })
 
-lspconfig.csharp_ls.setup({
-	root_dir = lspconfig.util.root_pattern(".git", ".csproj", "packages.config"),
-	cmd = { "/home/ash/.dotnet/tools/csharp-ls" }, -- Ensure cmd path is correct
-	filetypes = { "cs" }, -- Specify file types to activate csharp_ls
-	autostart = true, -- Automatically start the language server
-	custom_handlers = {}, -- Optional: Define custom handlers if needed
-})
+-- lspconfig.csharp_ls.setup({
+-- 	root_dir = lspconfig.util.root_pattern(".git", ".csproj", "packages.config"),
+-- 	cmd = { "/home/ash/.dotnet/tools/csharp-ls" }, -- Ensure cmd path is correct
+-- 	filetypes = { "cs" }, -- Specify file types to activate csharp_ls
+-- 	autostart = true, -- Automatically start the language server
+-- 	custom_handlers = {}, -- Optional: Define custom handlers if needed
+-- })
 
 lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
@@ -42,6 +42,13 @@ cmp.setup({
 				cmp.select_next_item()
 			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<Right>"] = cmp.mapping(function(fallback)
+			if vim.fn["copilot#Accept"] and vim.fn["copilot#Accept"]("") ~= "" then
+				vim.api.nvim_feedkeys(vim.fn["copilot#Accept"](), "i", true)
 			else
 				fallback()
 			end
@@ -88,16 +95,18 @@ require("lspconfig").rust_analyzer.setup({
 	},
 })
 
+local util = require("lspconfig/util")
 lspconfig.pyright.setup({
-	-- on_attach = custom_attach,
-	on_attach = function(client, bufnr)
-		local workspace = vim.fn.getcwd()
-		-- print("Workspace: " .. workspace) -- Confirm the current directory
+	root_dir = function(fname)
+		-- Always return the top-level directory of your project
+		return util.find_git_ancestor(fname)
+			or util.root_pattern("pyproject.toml", "setup.py", "requirements.txt", ".git")(fname)
+			or vim.loop.cwd()
 	end,
 	settings = {
 		python = {
 			analysis = {
-				extraPaths = { "./src", "./lib" }, -- Add directories containing your modules
+				-- extraPaths = { "./lib", "./src" }, -- Add directories containing your modules
 				useLibraryCodeForTypes = true, -- Ensure library code is used for type checking
 			},
 		},
@@ -223,7 +232,39 @@ require("lspconfig").lua_ls.setup({
 	},
 })
 
-require("lspconfig").texlab.setup({})
+lspconfig.texlab.setup({})
+lspconfig.clangd.setup({
+	cmd = {
+		"clangd",
+		"--fallback-style=webkit",
+	},
+})
+lspconfig.cssls.setup({})
+lspconfig.eslint.setup({})
+lspconfig.ts_ls.setup({})
+-- lspconfig.solc.setup({})
+lspconfig.html.setup({})
+lspconfig.eslint.setup({})
+-- lspconfig.omnisharp_extended.setup({})
+
+local pid = vim.fn.getpid()
+local omnisharp_bin = vim.fn.stdpath("data") .. "/mason/packages/omnisharp/omnisharp"
+
+local util = require("lspconfig/util")
+-- local omnisharp_ext = require("omnisharp_extended")
+lspconfig.omnisharp.setup({
+	cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
+	root_dir = util.root_pattern("*.sln", "*.csproj", ".git"),
+	enable_roslyn_analyzers = true,
+	organize_imports_on_format = true,
+	enable_import_completion = true,
+	-- handlers = {
+	-- 	["textDocument/definition"] = require("omnisharp_extended").definition_handler,
+	-- 	["textDocument/typeDefinition"] = require("omnisharp_extended").type_definition_handler,
+	-- 	["textDocument/references"] = require("omnisharp_extended").references_handler,
+	-- 	["textDocument/implementation"] = require("omnisharp_extended").implementation_handler,
+	-- },
+})
 
 -- require("lspconfig").cssls.setup({
 -- 	cmd = { "~/.local/share/nvim/mason/bin/vscode-css-language-server", "--stdio" }, -- Ensure you include '--stdio'
